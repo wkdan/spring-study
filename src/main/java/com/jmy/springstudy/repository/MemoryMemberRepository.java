@@ -23,7 +23,7 @@ public class MemoryMemberRepository implements MemberRepository {
 
     @Override
     public Optional<Member> findByName(String name) {
-        store.values().stream()//java의 Lambda 사용, 루프로 돌리는 역할
+        return store.values().stream()//java의 Lambda 사용, 루프로 돌리는 역할
                 .filter(member -> member.getName().equals(name))//멤버에서 getName이 여기 파라미터로 넘어온 Name과 같은지 확인
                 .findAny();// 루프를 돌면서 하나 찾으면 걔를 그냥 반환, 없으면 옵셔널 null로 반환
     }
@@ -32,5 +32,9 @@ public class MemoryMemberRepository implements MemberRepository {
     @Override
     public List<Member> findAll() {
         return new ArrayList<>(store.values()); // 위에 있는 멤버들이 다 반환이 됨
+    }
+
+    public void clearStore(){ // 스토어 초기화 코드
+        store.clear();
     }
 }
