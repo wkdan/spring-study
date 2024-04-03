@@ -1,9 +1,11 @@
 package com.jmy.springstudy.repository;
 
 import com.jmy.springstudy.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+//@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>(); // 이렇게 공유되는 변수는 concurrent or HashMap (동시성 문제 해결)
